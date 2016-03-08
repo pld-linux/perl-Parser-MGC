@@ -33,6 +33,8 @@ m//gc regexps used to implement the token parsing behaviour.
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
 
+mv lib/Parser/MGC/Examples/EvaluateExpression.pm examples
+
 %build
 %{__perl} Build.PL \
 	destdir=$RPM_BUILD_ROOT \
@@ -46,6 +48,9 @@ rm -rf $RPM_BUILD_ROOT
 
 ./Build install
 
+# already as man
+rm $RPM_BUILD_ROOT%{perl_vendorlib}/Parser/MGC/Tutorial.pod
+
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
@@ -55,7 +60,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_vendorlib}/Parser/*.pm
-%{perl_vendorlib}/Parser/MGC
-%{_mandir}/man3/*
+%{perl_vendorlib}/Parser/MGC.pm
+%{_mandir}/man3/Parser::MGC.3pm*
+%{_mandir}/man3/Parser::MGC::Tutorial.3pm*
 %{_examplesdir}/%{name}-%{version}
