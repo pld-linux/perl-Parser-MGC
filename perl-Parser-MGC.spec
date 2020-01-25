@@ -4,7 +4,6 @@
 
 %define		pdir	Parser
 %define		pnam	MGC
-%include	/usr/lib/rpm/macros.perl
 Summary:	Parser::MGC - build simple recursive-descent parsers
 Name:		perl-Parser-MGC
 Version:	0.15
